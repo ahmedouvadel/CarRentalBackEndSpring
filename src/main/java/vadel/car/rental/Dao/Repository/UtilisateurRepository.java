@@ -6,4 +6,5 @@ import vadel.car.rental.Dao.Entity.Utilisateur;
 
 @Repository
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
+    Utilisateur findByEmail(String email);
 }

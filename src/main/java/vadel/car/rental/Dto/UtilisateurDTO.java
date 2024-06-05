@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
 public class UtilisateurDTO {
@@ -14,4 +15,8 @@ public class UtilisateurDTO {
     private String adresse;
     private String permisConduire;
     private String role;
+    private byte[] bytes;
+
+    private MultipartFile img;
+
 }

@@ -15,10 +15,14 @@ public class Utilisateur {
     private Long id;
     private String nom;
     private String email;
+
     private String motDePasse;
     private String telephone;
     private String adresse;
     private String permisConduire;
+    @Lob
+    @Column(length = 4194304)
+    private byte[] image;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -32,6 +36,7 @@ public class Utilisateur {
         utilisateurDTO.setTelephone(telephone);
         utilisateurDTO.setAdresse(adresse);
         utilisateurDTO.setPermisConduire(permisConduire);
+        utilisateurDTO.setBytes(image);
         utilisateurDTO.setRole(role.name());
         return utilisateurDTO;
     }

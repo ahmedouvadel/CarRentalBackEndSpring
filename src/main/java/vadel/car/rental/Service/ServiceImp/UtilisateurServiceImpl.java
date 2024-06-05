@@ -9,13 +9,13 @@ import vadel.car.rental.Dto.SignupAdminRequestDTO;
 import vadel.car.rental.Dto.SignupClientRequestDTO;
 import vadel.car.rental.Dto.SignupProprietaireRequestDTO;
 import vadel.car.rental.Dto.UtilisateurDTO;
-import vadel.car.rental.Service.IService.IUtilisateur;
+import vadel.car.rental.Service.IService.UtilisateurService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UtilisateurServiceImpl implements IUtilisateur {
+public class UtilisateurServiceImpl implements UtilisateurService {
     private final UtilisateurRepository utilisateurRepository;
 
     @Autowired

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vadel.car.rental.Dto.VoitureDTO;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter

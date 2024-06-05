@@ -7,11 +7,9 @@ import vadel.car.rental.Dto.UtilisateurDTO;
 
 import java.util.List;
 
-public interface IUtilisateur {
+public interface UtilisateurService {
 
-    public UtilisateurDTO saveClient(SignupClientRequestDTO signupClientRequestDTO);
-    public UtilisateurDTO saveAdmin(SignupAdminRequestDTO signupAdminRequestDTO);
-    public UtilisateurDTO saveProprietaire(SignupProprietaireRequestDTO signupProprietaireRequestDTO);
+
     UtilisateurDTO getUtilisateurById(Long id);
     List<UtilisateurDTO> getAllUtilisateurs();
     void deleteUtilisateur(Long id);

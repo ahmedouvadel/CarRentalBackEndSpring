@@ -17,5 +17,4 @@ public class ReservationDTO {
     private LocalDate dateFin;
     private Status status;
 
-    // Getters and Setters
 }
