@@ -1,5 +1,7 @@
 package vadel.car.rental.Service.ServiceImp;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,18 +18,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UtilisateurRepository utilisateurRepository;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public AuthServiceImpl(UtilisateurRepository utilisateurRepository, AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder) {
-        this.utilisateurRepository = utilisateurRepository;
-        this.authenticationManager = authenticationManager;
-        this.passwordEncoder = passwordEncoder;
-    }
+
     @Override
     public UtilisateurDTO login(LoginDto loginDto) {
         try {
@@ -40,8 +38,6 @@ public class AuthServiceImpl implements AuthService {
             Utilisateur utilisateur = utilisateurRepository.findByEmail(loginDto.getEmail());
             return utilisateur != null ? utilisateur.getDTO() : null;
         } catch (AuthenticationException e) {
-            // Authentication failed
-            // Handle the exception (e.g., log, return error response)
             return null;
         }
     }

@@ -1,6 +1,6 @@
 package vadel.car.rental.Service.ServiceImp;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import vadel.car.rental.Dao.Entity.Utilisateur;
 import vadel.car.rental.Dao.Enum.Role;
@@ -15,14 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UtilisateurServiceImpl implements UtilisateurService {
     private final UtilisateurRepository utilisateurRepository;
 
-    @Autowired
-    public UtilisateurServiceImpl(UtilisateurRepository utilisateurRepository) {
-        this.utilisateurRepository = utilisateurRepository;
-    }
-
+    @Override
     public UtilisateurDTO saveProprietaire(SignupProprietaireRequestDTO signupProprietaireRequestDTO) {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(signupProprietaireRequestDTO.getNom());
@@ -37,6 +34,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     }
 
+    @Override
     public UtilisateurDTO saveAdmin(SignupAdminRequestDTO signupAdminRequestDTO) {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(signupAdminRequestDTO.getNom());
@@ -50,6 +48,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     }
 
+    @Override
     public UtilisateurDTO saveClient(SignupClientRequestDTO signupClientRequestDTO) {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setNom(signupClientRequestDTO.getNom());
@@ -57,7 +56,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         utilisateur.setTelephone(signupClientRequestDTO.getTelephone());
         utilisateur.setAdresse(signupClientRequestDTO.getAdresse());
         utilisateur.setPermisConduire(signupClientRequestDTO.getPermisConduire());
-        // Assuming the Role is already set in the DTO
         utilisateur.setRole(Role.USER);
 
         return utilisateurRepository.save(utilisateur).getDTO();

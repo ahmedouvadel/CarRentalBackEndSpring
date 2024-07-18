@@ -1,5 +1,6 @@
 package vadel.car.rental.Controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,7 +10,6 @@ import vadel.car.rental.Dto.*;
 import vadel.car.rental.Service.IService.AuthService;
 
 @RestController
-@RequestMapping("/auth")
 public class AuthController {
 
     private final AuthService authService;
@@ -18,13 +18,12 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/login")
     public ResponseEntity<UtilisateurDTO> login(@RequestBody LoginDto loginDto) {
         UtilisateurDTO utilisateurDTO = authService.login(loginDto);
         if (utilisateurDTO != null) {
             return ResponseEntity.ok(utilisateurDTO);
         } else {
-            return ResponseEntity.status(401).body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
