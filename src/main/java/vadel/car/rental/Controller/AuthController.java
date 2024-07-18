@@ -10,6 +10,7 @@ import vadel.car.rental.Dto.*;
 import vadel.car.rental.Service.IService.AuthService;
 
 @RestController
+@RequestMapping(path = "/signIn")
 public class AuthController {
 
     private final AuthService authService;

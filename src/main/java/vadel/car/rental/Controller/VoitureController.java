@@ -2,6 +2,7 @@ package vadel.car.rental.Controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import vadel.car.rental.Dto.VoitureDTO;
 import vadel.car.rental.Service.IService.VoitureService;
@@ -21,24 +22,29 @@ public class VoitureController {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<VoitureDTO> createVoiture(@ModelAttribute VoitureDTO voitureDTO) throws IOException {
         VoitureDTO savedVoiture = voitureService.saveCar(voitureDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVoiture);
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
+
     public ResponseEntity<VoitureDTO> getVoitureById(@PathVariable Long id) {
         VoitureDTO voitureDTO = voitureService.getCarById(id);
         return voitureDTO != null ? ResponseEntity.ok(voitureDTO) : ResponseEntity.notFound().build();
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<List<VoitureDTO>> getAllVoitures() {
         List<VoitureDTO> voitures = voitureService.getAllCars();
         return ResponseEntity.ok(voitures);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<Void> deleteVoiture(@PathVariable Long id) {
         voitureService.deleteCars(id);
         return ResponseEntity.noContent().build();
