@@ -69,7 +69,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public List<UtilisateurDTO> getAllUtilisateurs() {
-        return utilisateurRepository.findAll().stream()
+        List<Utilisateur> users = utilisateurRepository.findAll();
+        return users.stream()
                 .map(Utilisateur::getDTO)
                 .collect(Collectors.toList());
     }

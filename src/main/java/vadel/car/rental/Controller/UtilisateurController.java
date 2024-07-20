@@ -3,9 +3,6 @@ package vadel.car.rental.Controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import vadel.car.rental.Dto.SignupAdminRequestDTO;
-import vadel.car.rental.Dto.SignupClientRequestDTO;
-import vadel.car.rental.Dto.SignupProprietaireRequestDTO;
 import vadel.car.rental.Dto.UtilisateurDTO;
 import vadel.car.rental.Service.IService.UtilisateurService;
 
@@ -30,8 +27,7 @@ public class UtilisateurController {
         return utilisateurDTO != null ? ResponseEntity.ok(utilisateurDTO) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping
-    @PreAuthorize("hasAuthority('SCOPE_USER')")
+    @GetMapping()
     public ResponseEntity<List<UtilisateurDTO>> getAllUtilisateurs() {
         List<UtilisateurDTO> utilisateurs = utilisateurService.getAllUtilisateurs();
         return ResponseEntity.ok(utilisateurs);

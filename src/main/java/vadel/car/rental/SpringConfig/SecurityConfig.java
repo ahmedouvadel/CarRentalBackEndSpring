@@ -45,7 +45,6 @@ public class SecurityConfig {
 
     private static final String[] WHITE_LIST_URL = {
             "/api/**",
-            "/signIn/**",
             "/auth/login",
             "/swagger-ui/**"
     };
@@ -76,6 +75,7 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(WHITE_LIST_URL).permitAll()
+                        .requestMatchers("/signIn/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sm->sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
