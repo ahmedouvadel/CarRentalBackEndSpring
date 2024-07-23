@@ -23,19 +23,18 @@ public class VoitureServiceImpl implements VoitureService {
         this.utilisateurRepository = utilisateurRepository;
     }
 
-    @Override
+
     public VoitureDTO saveCar(VoitureDTO voitureDTO) throws IOException {
         Voiture voiture = new Voiture();
         voiture.setModele(voitureDTO.getModele());
         voiture.setMarque(voitureDTO.getMarque());
         voiture.setAnnee(voitureDTO.getAnnee());
         voiture.setPrixParJour(voitureDTO.getPrixParJour());
-        // Fetching the Utilisateur entity based on proprietaireId
-        Utilisateur proprietaire = utilisateurRepository.findById(voitureDTO.getProprietaireId()).orElse(null);
-        voiture.setProprietaire(proprietaire);
-        voiture.setImage1(voitureDTO.getImg().getBytes());
-        voiture.setImage2(voitureDTO.getImg().getBytes());
-        voiture.setImage3(voitureDTO.getImg().getBytes());
+        voiture.setDisponible(voitureDTO.isDisponible());
+        voiture.setProprietaireName(voitureDTO.getProprietaireName());
+        voiture.setImage1(voitureDTO.getImg1().getBytes());
+        voiture.setImage2(voitureDTO.getImg2().getBytes());
+        voiture.setImage3(voitureDTO.getImg3().getBytes());
 
         return voitureRepository.save(voiture).getDTO();
 

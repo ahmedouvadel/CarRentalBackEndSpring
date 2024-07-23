@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/paiements")
-@CrossOrigin("*")
 public class PaiementController {
 
     private final PaiementService paiementService;

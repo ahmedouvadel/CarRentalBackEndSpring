@@ -18,10 +18,16 @@ public class VoitureDTO {
     private String marque;
     private String modele;
     private int annee;
-    private float prixParJour;
+    private String prixParJour;
     private boolean disponible;
-    private Long proprietaireId;
-    private byte[] bytes;
+    private String proprietaireName;
+    private byte[] image1;
+    private byte[] image2;
+    private byte[] image3;
 
-    private MultipartFile img;
+
+    private MultipartFile img1;
+    private MultipartFile img2;
+    private MultipartFile img3;
+
 }

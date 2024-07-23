@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/voitures")
-@CrossOrigin("*")
 public class VoitureController {
     private final VoitureService voitureService;
 
@@ -22,22 +21,23 @@ public class VoitureController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<VoitureDTO> createVoiture(@ModelAttribute VoitureDTO voitureDTO) throws IOException {
+        // Log incoming data for debugging
+        System.out.println("Received VoitureDTO: " + voitureDTO.toString());
+
+        // Proceed with saving the car
         VoitureDTO savedVoiture = voitureService.saveCar(voitureDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVoiture);
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('SCOPE_USER')")
-
     public ResponseEntity<VoitureDTO> getVoitureById(@PathVariable Long id) {
         VoitureDTO voitureDTO = voitureService.getCarById(id);
         return voitureDTO != null ? ResponseEntity.ok(voitureDTO) : ResponseEntity.notFound().build();
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<List<VoitureDTO>> getAllVoitures() {
         List<VoitureDTO> voitures = voitureService.getAllCars();
         return ResponseEntity.ok(voitures);

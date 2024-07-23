@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vadel.car.rental.Dto.VoitureDTO;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter
@@ -22,20 +20,17 @@ public class Voiture {
     private String modele;
     private int annee;
     @Lob
-    @Column(length = 4194304)
+    @Column(columnDefinition = "longblob")
     private byte[] image1;
     @Lob
-    @Column(length = 4194304)
+    @Column(columnDefinition = "longblob")
     private byte[] image2;
     @Lob
-    @Column(length = 4194304)
+    @Column(columnDefinition = "longblob")
     private byte[] image3;
-    private float prixParJour;
+    private String prixParJour;
     private boolean disponible;
-
-    @ManyToOne
-    @JoinColumn(name = "proprietaire_id", nullable = false)
-    private Utilisateur proprietaire;
+    private String proprietaireName;
 
     public VoitureDTO getDTO() {
         VoitureDTO voitureDTO = new VoitureDTO();
@@ -45,7 +40,10 @@ public class Voiture {
         voitureDTO.setAnnee(annee);
         voitureDTO.setPrixParJour(prixParJour);
         voitureDTO.setDisponible(disponible);
-        voitureDTO.setProprietaireId(proprietaire.getId());
+        voitureDTO.setProprietaireName(proprietaireName);
+        voitureDTO.setImage1(image1);
+        voitureDTO.setImage2(image2);
+        voitureDTO.setImage3(image3);
         return voitureDTO;
     }
 }
